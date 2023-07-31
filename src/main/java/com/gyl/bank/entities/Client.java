@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Date;
 import java.util.List;
@@ -22,9 +23,11 @@ public class Client {
     private String identificationNumber;
     @OneToMany(mappedBy = "client")
     private List<Account> accounts;
+    private String password;
 
     public Client() {
     }
+
 
     public String getId() {
         return id;
@@ -80,5 +83,19 @@ public class Client {
 
     public void setAccounts(List<Account> accounts) {
         this.accounts = accounts;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = encryptPassword(password);
+    }
+
+    private String encryptPassword(String password) {
+        // Encriptar la contraseña usando BCryptPasswordEncoder
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        return passwordEncoder.encode(password);
     }
 }
