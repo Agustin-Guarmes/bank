@@ -2,6 +2,7 @@ package com.gyl.bank.entities;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Date;
 
@@ -19,6 +20,7 @@ public class Employee {
     @JoinColumn(name = "bank_branch_id")
     private BankBranch bankBranch;
     private String position;
+    private String password;
 
     public Employee() {
     }
@@ -77,5 +79,19 @@ public class Employee {
 
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = encryptPassword(password);
+    }
+
+    private String encryptPassword(String password) {
+        // Encriptar la contraseña usando BCryptPasswordEncoder
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        return passwordEncoder.encode(password);
     }
 }
