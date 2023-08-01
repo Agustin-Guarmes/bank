@@ -6,7 +6,6 @@ import com.gyl.bank.entities.Employee;
 import com.gyl.bank.repositories.EmployeeRepository;
 import com.gyl.bank.services.interfaces.EmployeeService;
 import jakarta.persistence.EntityNotFoundException;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +25,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public EmployeeResponseDTO createEmployee(EmployeeRequestDTO requestDTO) {
         Employee employee = modelMapper.map(requestDTO, Employee.class);
-        // Puedes agregar lógica adicional aquí antes de guardar el empleado en la base de datos
+
         employeeRepository.save(employee);
         return modelMapper.map(employee, EmployeeResponseDTO.class);
     }
