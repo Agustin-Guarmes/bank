@@ -1,7 +1,8 @@
 package com.gyl.bank.dto.request;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Positive;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Positive;
+
 import java.math.BigDecimal;
 
 public class TransactionRequestDTO {

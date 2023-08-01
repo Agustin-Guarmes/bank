@@ -1,6 +1,7 @@
 package com.gyl.bank.dto.request;
 
-import javax.validation.constraints.Size;
+
+import jakarta.validation.constraints.Size;
 
 public class BankBranchRequestDTO {
     @Size(min = 2, max = 100, message = "El nombre debe tener entre 2 y 100 caracteres.")
